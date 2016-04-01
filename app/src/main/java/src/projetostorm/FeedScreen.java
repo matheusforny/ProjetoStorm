@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
@@ -30,9 +31,20 @@ public class FeedScreen extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+        getExtras();
         createVideoDatas();
         configureButtons();
         setTestButton();
+    }
+
+    private void getExtras(){
+        Bundle extras = getIntent().getExtras();
+
+        if(extras != null)
+        {
+            if(extras.getBoolean("NO_URL_FLAG"))
+                Toast.makeText(FeedScreen.this, "Problema na URL do video selecionado", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void createVideoDatas(){

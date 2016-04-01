@@ -1,5 +1,6 @@
 package src.projetostorm;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,9 +23,22 @@ public class VideoScreen extends AppCompatActivity {
 
         getExtras();
 
-        //TODO: ADD EXCEPTION WHEN THIS CLASS DOESN'T GET AN URL
         //TODO: FIX VIDEO SIZE;
+    }
 
+    private void getExtras(){
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            if(extras.containsKey("VIDEO_URL"))
+                playVideo();
+            else
+                throwback();
+        } else
+            throwback();
+    }
+
+    private void playVideo(){
         videoView = (VideoView) findViewById(R.id.videoView);
         Uri videoURI = Uri.parse(videoURL);
         videoView.setMediaController(new MediaController(this));
@@ -33,13 +47,10 @@ public class VideoScreen extends AppCompatActivity {
         videoView.requestFocus();
     }
 
-    private void getExtras(){
-        Bundle extras = getIntent().getExtras();
-
-        if (extras != null) {
-            videoURL = extras.getString("VIDEO_URL");
-            // and get whatever type user account id is
-        }
+    private void throwback(){
+        Intent throwbackIntent = new Intent(VideoScreen.this, FeedScreen.class);
+        throwbackIntent.putExtra("NO_URL_FLAG", true);
+        startActivity(throwbackIntent);
     }
 
 }
