@@ -14,29 +14,48 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import java.util.ArrayList;
+
+import src.projetostorm.data.VideoData;
+
 public class FeedScreen extends AppCompatActivity {
+
+    private ArrayList<VideoData> arrayOfVideoData;
+    private ArrayList<Button> arrayOfButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        setVideoView();
+        createVideoDatas();
+        configureButtons();
         setTestButton();
     }
 
-    private void setTestButton() {
-        Button testButton = (Button)this.findViewById(R.id.testButton);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(FeedScreen.this, VideoScreen.class));
-            }
-        });
+    private void createVideoDatas(){
+        arrayOfVideoData = new ArrayList<VideoData>();
+
+        arrayOfVideoData.add(new VideoData("http://www.html5videoplayer.net/videos/toystory.mp4", "Toy Story", "Video Toy Story"));
     }
 
-    private void setVideoView() {
+    private void configureButtons(){
+        arrayOfButtons = new ArrayList<Button>();
+
+        arrayOfButtons.add((Button) this.findViewById(R.id.testButton));
+        arrayOfButtons.get(0).setText(arrayOfVideoData.get(0).getVideoName());
+    }
+
+    private void setTestButton() {
+        arrayOfButtons.get(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changeScreenIntent = new Intent(FeedScreen.this, VideoScreen.class);
+                changeScreenIntent.putExtra("VIDEO_URL", arrayOfVideoData.get(0).getVideoUrl());
+                startActivity(changeScreenIntent);
+            }
+        });
     }
 }
