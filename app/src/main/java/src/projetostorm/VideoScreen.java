@@ -30,8 +30,10 @@ public class VideoScreen extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            if(extras.containsKey("VIDEO_URL"))
+            if(extras.containsKey("VIDEO_URL")) {
+                videoURL = extras.getString("VIDEO_URL");
                 playVideo();
+            }
             else
                 throwback();
         } else
