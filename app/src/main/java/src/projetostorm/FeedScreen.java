@@ -68,7 +68,7 @@ public class FeedScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent changeScreenIntent = new Intent(FeedScreen.this, VideoScreen.class);
-                changeScreenIntent.putExtra("VIDEO_URL", arrayOfVideoData.get(0).getVideoUrl());
+                //changeScreenIntent.putExtra("VIDEO_URL", arrayOfVideoData.get(0).getVideoUrl());
                 startActivity(changeScreenIntent);
             }
         });
