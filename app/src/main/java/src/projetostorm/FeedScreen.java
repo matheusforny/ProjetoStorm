@@ -43,14 +43,17 @@ public class FeedScreen extends AppCompatActivity {
         if(extras != null)
         {
             if(extras.getBoolean("NO_URL_FLAG"))
-                Toast.makeText(FeedScreen.this, "Problema na URL do video selecionado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FeedScreen.this, "Problema na URL do video selecionado",
+                        Toast.LENGTH_SHORT).show();
         }
     }
 
     private void createVideoDatas(){
         arrayOfVideoData = new ArrayList<VideoData>();
+        String[] videoTags = {"Toy", "Story"};
 
-        arrayOfVideoData.add(new VideoData("http://www.html5videoplayer.net/videos/toystory.mp4", "Toy Story", "Video Toy Story"));
+        arrayOfVideoData.add(new VideoData("http://www.html5videoplayer.net/videos/toystory.mp4",
+                "Toy Story", "Video Toy Story", videoTags));
     }
 
     private void configureButtons(){
