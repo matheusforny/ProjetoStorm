@@ -6,13 +6,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-public class VideoScreen extends AppCompatActivity {
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
-    private String videoURL;
-    private VideoView videoView;
+import src.projetostorm.data.CodeKeys;
+
+public class VideoScreen extends YouTubeBaseActivity {
+
+    private YouTubePlayerView youTubePlayerView;
+    private YouTubePlayer.OnInitializedListener onInitializedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,32 +30,37 @@ public class VideoScreen extends AppCompatActivity {
 
         getExtras();
 
-        //TODO: FIX MINOR VIDEO SIZE PROBLEMS;
+        //TODO: FIX PRE-FULLSCREEN PROBLEM
+    }
+
+    private void initializeYoutube(final String videoID){
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubePlayer);
+        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.setFullscreen(true);
+                youTubePlayer.loadVideo(videoID);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
     }
 
     private void getExtras(){
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            if(extras.containsKey("VIDEO_URL")) {
-                videoURL = extras.getString("VIDEO_URL");
-                playVideo();
+            if(extras.containsKey("VIDEO_ID")) {
+                initializeYoutube(extras.getString("VIDEO_ID"));
+                youTubePlayerView.initialize(CodeKeys.YOUTUBE_API_KEY, onInitializedListener);
             }
             else
                 throwback();
         } else
             throwback();
-    }
-
-    private void playVideo(){
-        videoView = (VideoView) findViewById(R.id.videoView);
-        Uri videoURI = Uri.parse(videoURL);
-        videoView.setMediaController(new MediaController(this));
-        videoView.setVideoURI(videoURI);
-        videoView.start();
-        videoView.requestFocus();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void throwback(){

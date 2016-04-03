@@ -50,10 +50,9 @@ public class FeedScreen extends AppCompatActivity {
 
     private void createVideoDatas(){
         arrayOfVideoData = new ArrayList<VideoData>();
-        String[] videoTags = {"Toy", "Story"};
+        String[] videoTags = {"Gintama", "Abertura"};
 
-        arrayOfVideoData.add(new VideoData("http://www.html5videoplayer.net/videos/toystory.mp4",
-                "Toy Story", "Video Toy Story", videoTags));
+        arrayOfVideoData.add(new VideoData("7_LOUjQCP_A", "Abertura Gintama 17", "Aberturas de Gintama", videoTags));
     }
 
     private void configureButtons(){
@@ -68,7 +67,7 @@ public class FeedScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent changeScreenIntent = new Intent(FeedScreen.this, VideoScreen.class);
-                //changeScreenIntent.putExtra("VIDEO_URL", arrayOfVideoData.get(0).getVideoUrl());
+                changeScreenIntent.putExtra("VIDEO_ID", arrayOfVideoData.get(0).getVideoUrl());
                 startActivity(changeScreenIntent);
             }
         });
