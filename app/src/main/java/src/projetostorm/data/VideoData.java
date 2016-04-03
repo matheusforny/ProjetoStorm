@@ -5,20 +5,18 @@ package src.projetostorm.data;
  */
 public class VideoData {
 
-    private String videoUrl;
+    private String videoID;
     private String videoName;
     private String videoDescription;
-    private String[] videoTags;
 
-    public VideoData(String url, String name, String description, String[] tags) {
-        this.videoUrl = url;
+    public VideoData(String videoID, String name, String description) {
+        this.videoID = videoID;
         this.videoName = name;
         this.videoDescription = description;
-        this.videoTags = tags;
     }
 
-    public String getVideoUrl(){
-        return this.videoUrl;
+    public String getVideoID(){
+        return this.videoID;
     }
 
     public String getVideoName(){
@@ -27,9 +25,5 @@ public class VideoData {
 
     public String getVideoDescription(){
         return this.videoDescription;
-    }
-
-    public String[] getVideoTags(){
-        return this.videoTags;
     }
 }

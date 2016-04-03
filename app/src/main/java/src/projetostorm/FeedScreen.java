@@ -1,40 +1,37 @@
 package src.projetostorm;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.MediaController;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import java.util.ArrayList;
 
+import src.projetostorm.data.TempVideoList;
 import src.projetostorm.data.VideoData;
 
 public class FeedScreen extends AppCompatActivity {
 
-    private ArrayList<VideoData> arrayOfVideoData;
-    private ArrayList<Button> arrayOfButtons;
+    private ListView videoListView;
+    private ArrayList<VideoData> videoDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_screen);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         getExtras();
-        createVideoDatas();
-        configureButtons();
-        setTestButton();
+
+        TempVideoList.initialize();
+
+        initializeVideoListView();
+        registerClickCallBackOnVideoList();
+
     }
 
     private void getExtras(){
@@ -48,27 +45,30 @@ public class FeedScreen extends AppCompatActivity {
         }
     }
 
-    private void createVideoDatas(){
-        arrayOfVideoData = new ArrayList<VideoData>();
-        String[] videoTags = {"Gintama", "Abertura"};
+    private void initializeVideoListView(){
+        videoDatas = TempVideoList.getVideoDataArrayList();
+        String[] videoNames = {videoDatas.get(0).getVideoName(), videoDatas.get(1).getVideoName()};
 
-        arrayOfVideoData.add(new VideoData("7_LOUjQCP_A", "Abertura Gintama 17", "Aberturas de Gintama", videoTags));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                R.layout.video_list_item,
+                videoNames
+        );
+
+        videoListView = (ListView) findViewById(R.id.videoListView);
+        videoListView.setAdapter(adapter);
+
     }
 
-    private void configureButtons(){
-        arrayOfButtons = new ArrayList<Button>();
-
-        arrayOfButtons.add((Button) this.findViewById(R.id.testButton));
-        arrayOfButtons.get(0).setText(arrayOfVideoData.get(0).getVideoName());
-    }
-
-    private void setTestButton() {
-        arrayOfButtons.get(0).setOnClickListener(new View.OnClickListener() {
+    private void registerClickCallBackOnVideoList(){
+        videoListView = (ListView) findViewById(R.id.videoListView);
+        videoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent changeScreenIntent = new Intent(FeedScreen.this, VideoScreen.class);
-                changeScreenIntent.putExtra("VIDEO_ID", arrayOfVideoData.get(0).getVideoUrl());
-                startActivity(changeScreenIntent);
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                Intent throwbackIntent = new Intent(FeedScreen.this, VideoScreen.class);
+                throwbackIntent.putExtra("VIDEO_ID",
+                        TempVideoList.getVideoDataArrayList().get(arg2).getVideoID());
+                startActivity(throwbackIntent);
             }
         });
     }
