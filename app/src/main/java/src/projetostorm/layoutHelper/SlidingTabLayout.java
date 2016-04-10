@@ -31,6 +31,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import src.projetostorm.R;
+
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
@@ -53,17 +55,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * {@link #setCustomTabColorizer(TabColorizer)}.
      */
     public interface TabColorizer {
-
-        /**
-         * @return return the color of the indicator used when {@code position} is selected.
-         */
         int getIndicatorColor(int position);
 
     }
 
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 14;
 
     private int mTitleOffset;
 
@@ -222,6 +220,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if (i == mViewPager.getCurrentItem()) {
                 tabView.setSelected(true);
             }
+
+            tabTitleView.setTextColor(getResources().getColorStateList(R.color.selector));
         }
     }
 

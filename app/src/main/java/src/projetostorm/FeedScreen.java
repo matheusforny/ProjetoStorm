@@ -40,9 +40,6 @@ public class FeedScreen extends AppCompatActivity {
         TempVideoList.initialize();
         initializeTabs();
 
-        //initializeVideoListView();
-        //registerClickCallBackOnVideoList();
-
     }
 
     private void getExtras(){

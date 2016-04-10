@@ -18,6 +18,10 @@ public class VideoFeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.video_list_container,container,false);
+
+        //initializeVideoListView();
+        //registerClickCallBackOnVideoList();
+
         return v;
     }
 }
