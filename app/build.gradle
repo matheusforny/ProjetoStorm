@@ -25,4 +25,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile files('libs/google-api-client-android-1.21.0.jar')
+    compile files('libs/google-http-client-android-1.21.0.jar')
+    compile files('google-api-services-youtube-v3-rev164-1.21.0.jar')
+    compile files('commons-logging-1.1.1.jar')
+    compile files('jdo2-api-2.3-eb.jar')
+    compile files('google-oauth-client-1.21.0.jar')
 }
