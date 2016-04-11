@@ -1,28 +1,18 @@
 package src.projetostorm;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-import src.projetostorm.data.TempVideoList;
-import src.projetostorm.data.VideoData;
+import src.projetostorm.data.VideoListHelper;
 import src.projetostorm.layoutHelper.SlidingTabLayout;
 import src.projetostorm.layoutHelper.ViewPagerAdapter;
+import src.projetostorm.listHelper.VideoListAdapter;
 
 public class FeedScreen extends AppCompatActivity {
 
-    private ArrayList<VideoData> videoDatas;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter adapter;
@@ -37,7 +27,12 @@ public class FeedScreen extends AppCompatActivity {
 
         getExtras();
 
-        TempVideoList.initialize();
+        VideoListHelper.initialize();
+
+        String[] videoNames = {VideoListHelper.getVideoDataArrayList().get(0).getVideoName(),
+                VideoListHelper.getVideoDataArrayList().get(1).getVideoName()};
+        VideoListAdapter.initialize(this, videoNames);
+
         initializeTabs();
 
     }
@@ -51,21 +46,6 @@ public class FeedScreen extends AppCompatActivity {
                 Toast.makeText(FeedScreen.this, "Problema na URL do video selecionado",
                         Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void initializeVideoListView(){
-        /*videoDatas = TempVideoList.getVideoDataArrayList();
-        String[] videoNames = {videoDatas.get(0).getVideoName(), videoDatas.get(1).getVideoName()};
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                R.layout.video_list_item,
-                videoNames
-        );
-
-        videoListView = (ListView) findViewById(R.id.videoListContainer);
-        videoListView.setAdapter(adapter);*/
-
     }
 
     private void initializeTabs(){
@@ -89,18 +69,5 @@ public class FeedScreen extends AppCompatActivity {
         });
 
         tabs.setViewPager(pager);
-    }
-
-    private void registerClickCallBackOnVideoList(){
-        /*videoListView = (ListView) findViewById(R.id.videoListContainer);
-        videoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Intent throwbackIntent = new Intent(FeedScreen.this, VideoScreen.class);
-                throwbackIntent.putExtra("VIDEO_ID",
-                        TempVideoList.getVideoDataArrayList().get(arg2).getVideoID());
-                startActivity(throwbackIntent);
-            }
-        });*/
     }
 }

@@ -17,7 +17,7 @@ public class ArticleFeedFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.artcile_list_container,container,false);
+        View v =inflater.inflate(R.layout.article_list_container,container,false);
         return v;
     }
 }
