@@ -1,6 +1,8 @@
-package src.projetostorm.data;
+package src.projetostorm.listHelper;
 
 import java.util.ArrayList;
+
+import src.projetostorm.data.VideoData;
 
 /**
  * Created by x on 03/04/2016.

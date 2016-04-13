@@ -8,14 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
 import src.projetostorm.R;
 import src.projetostorm.VideoScreen;
-import src.projetostorm.data.VideoListHelper;
+import src.projetostorm.listHelper.VideoListHelper;
 import src.projetostorm.data.VideoData;
 
 /**

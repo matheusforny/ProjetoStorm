@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
-import src.projetostorm.data.VideoListHelper;
+import src.projetostorm.listHelper.VideoListHelper;
 import src.projetostorm.layoutHelper.SlidingTabLayout;
 import src.projetostorm.layoutHelper.ViewPagerAdapter;
-import src.projetostorm.listHelper.VideoListAdapter;
 
 public class FeedScreen extends AppCompatActivity {
 
@@ -28,10 +27,6 @@ public class FeedScreen extends AppCompatActivity {
         getExtras();
 
         VideoListHelper.initialize();
-
-        String[] videoNames = {VideoListHelper.getVideoDataArrayList().get(0).getVideoName(),
-                VideoListHelper.getVideoDataArrayList().get(1).getVideoName()};
-        VideoListAdapter.initialize(this, videoNames);
 
         initializeTabs();
 
