@@ -2,6 +2,8 @@ package src.projetostorm.rssHelper;
 
 import android.util.Xml;
 
+import com.google.android.youtube.player.YouTubePlayer;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -15,7 +17,7 @@ import src.projetostorm.data.RssItem;
 /**
  * Created by x on 11/04/2016.
  */
-public class BlogParser {
+public class Parser {
 
     private final String ns = null;
 

@@ -31,7 +31,7 @@ public class ArticleFeedFragment extends ListFragment implements AdapterView.OnI
     //TODO: IMPLEMENTAR BARRA DE PROGRESSO
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
     }
@@ -54,6 +54,7 @@ public class ArticleFeedFragment extends ListFragment implements AdapterView.OnI
     private void startService() {
         Intent intent = new Intent(getActivity(), RssService.class);
         intent.putExtra("DADO_FEED", resultReceiver);
+        intent.putExtra("IS_VIDEO", false);
         getActivity().startService(intent);
     }
 

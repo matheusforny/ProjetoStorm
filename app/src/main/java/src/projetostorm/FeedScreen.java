@@ -26,8 +26,6 @@ public class FeedScreen extends AppCompatActivity {
 
         getExtras();
 
-        VideoListHelper.initialize();
-
         initializeTabs();
 
     }

@@ -21,7 +21,7 @@ import src.projetostorm.data.RssItem;
  */
 public class RssService extends IntentService {
 
-    private static final String RSS_LINK = "http://feeds.feedburner.com/MdMPodcast";
+    private static final String BLOG_LINK = "http://feeds.feedburner.com/MdMPodcast";
 
     public RssService() {
         super("RssService");
@@ -30,9 +30,10 @@ public class RssService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         List<RssItem> rssItems = null;
+
         try {
-            BlogParser parser = new BlogParser();
-            rssItems = parser.parse(getInputStream(RSS_LINK));
+            Parser parser = new Parser();
+            rssItems = parser.parse(getInputStream(BLOG_LINK));
         } catch (XmlPullParserException e) {
             Log.w(e.getMessage(), e);
         } catch (IOException e) {
