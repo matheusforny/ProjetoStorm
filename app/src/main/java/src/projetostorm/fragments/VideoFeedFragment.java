@@ -19,6 +19,7 @@ import java.util.List;
 
 import src.projetostorm.R;
 import src.projetostorm.VideoScreen;
+import src.projetostorm.data.CodeConstants;
 import src.projetostorm.data.RssItem;
 import src.projetostorm.data.VideoData;
 import src.projetostorm.listHelper.RssAdapter;
@@ -65,7 +66,7 @@ public class VideoFeedFragment extends ListFragment implements OnItemClickListen
     private void startService() {
         VideoListHelper.initialize(getContext());
         handler = new Handler();
-        searchOnYoutube("MdM Melhores do Mundo");
+        searchOnYoutube(CodeConstants.TEMPORARY_SEARCH);
     }
 
     private void searchOnYoutube(final String keywords){
@@ -89,7 +90,7 @@ public class VideoFeedFragment extends ListFragment implements OnItemClickListen
         YoutubeAdapter adapter = (YoutubeAdapter) parent.getAdapter();
         VideoData data = (VideoData) adapter.getItem(position);
         Intent intent = new Intent(getActivity(), VideoScreen.class);
-        intent.putExtra("VIDEO_ID", data.getVideoID());
+        intent.putExtra(CodeConstants.INTENT_YOUTUBE_ID, data.getVideoID());
         startActivity(intent);
     }
 }

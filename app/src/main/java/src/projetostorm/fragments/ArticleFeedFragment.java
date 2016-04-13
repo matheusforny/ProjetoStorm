@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import src.projetostorm.R;
+import src.projetostorm.data.CodeConstants;
 import src.projetostorm.data.RssItem;
 import src.projetostorm.listHelper.RssAdapter;
 import src.projetostorm.rssHelper.RssService;
@@ -53,8 +54,7 @@ public class ArticleFeedFragment extends ListFragment implements AdapterView.OnI
 
     private void startService() {
         Intent intent = new Intent(getActivity(), RssService.class);
-        intent.putExtra("DADO_FEED", resultReceiver);
-        intent.putExtra("IS_VIDEO", false);
+        intent.putExtra(CodeConstants.INTENT_FEED_DATA, resultReceiver);
         getActivity().startService(intent);
     }
 
@@ -67,7 +67,7 @@ public class ArticleFeedFragment extends ListFragment implements AdapterView.OnI
                 RssAdapter adapter = new RssAdapter(getActivity(), items);
                 setListAdapter(adapter);
             } else {
-                Toast.makeText(getActivity(), "Erro com o feed",
+                Toast.makeText(getActivity(), R.string.error_youtube_feed,
                         Toast.LENGTH_LONG).show();
             }
             //progressBar.setVisibility(View.GONE);

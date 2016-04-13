@@ -14,14 +14,13 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
+import src.projetostorm.data.CodeConstants;
 import src.projetostorm.data.RssItem;
 
 /**
  * Created by x on 11/04/2016.
  */
 public class RssService extends IntentService {
-
-    private static final String BLOG_LINK = "http://feeds.feedburner.com/MdMPodcast";
 
     public RssService() {
         super("RssService");
@@ -33,7 +32,7 @@ public class RssService extends IntentService {
 
         try {
             Parser parser = new Parser();
-            rssItems = parser.parse(getInputStream(BLOG_LINK));
+            rssItems = parser.parse(getInputStream(CodeConstants.BLOG_FEED));
         } catch (XmlPullParserException e) {
             Log.w(e.getMessage(), e);
         } catch (IOException e) {
@@ -41,7 +40,7 @@ public class RssService extends IntentService {
         }
         Bundle bundle = new Bundle();
         bundle.putSerializable("items", (Serializable) rssItems);
-        ResultReceiver receiver = intent.getParcelableExtra("DADO_FEED");
+        ResultReceiver receiver = intent.getParcelableExtra(CodeConstants.INTENT_FEED_DATA);
         receiver.send(0, bundle);
     }
 

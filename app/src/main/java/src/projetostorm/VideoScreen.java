@@ -15,6 +15,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import src.projetostorm.data.CodeConstants;
 import src.projetostorm.data.CodeKeys;
 
 public class VideoScreen extends YouTubeBaseActivity {
@@ -33,7 +34,7 @@ public class VideoScreen extends YouTubeBaseActivity {
         //TODO: FIX PRE-FULLSCREEN PROBLEM
     }
 
-    private void initializeYoutube(final String videoID){
+    private void initializeYoutubePlayer(final String videoID){
         youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubePlayer);
         onInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
@@ -53,8 +54,8 @@ public class VideoScreen extends YouTubeBaseActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            if(extras.containsKey("VIDEO_ID")) {
-                initializeYoutube(extras.getString("VIDEO_ID"));
+            if(extras.containsKey(CodeConstants.INTENT_YOUTUBE_ID)) {
+                initializeYoutubePlayer(extras.getString(CodeConstants.INTENT_YOUTUBE_ID));
                 youTubePlayerView.initialize(CodeKeys.YOUTUBE_API_KEY, onInitializedListener);
             }
             else
@@ -65,7 +66,7 @@ public class VideoScreen extends YouTubeBaseActivity {
 
     private void throwback(){
         Intent throwbackIntent = new Intent(VideoScreen.this, FeedScreen.class);
-        throwbackIntent.putExtra("NO_URL_FLAG", true);
+        throwbackIntent.putExtra(CodeConstants.INTENT_NO_URL_DATA, true);
         startActivity(throwbackIntent);
     }
 

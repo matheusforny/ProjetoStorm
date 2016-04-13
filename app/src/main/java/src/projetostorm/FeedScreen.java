@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import src.projetostorm.data.CodeConstants;
 import src.projetostorm.listHelper.VideoListHelper;
 import src.projetostorm.layoutHelper.SlidingTabLayout;
 import src.projetostorm.layoutHelper.ViewPagerAdapter;
@@ -35,8 +36,8 @@ public class FeedScreen extends AppCompatActivity {
 
         if(extras != null)
         {
-            if(extras.getBoolean("NO_URL_FLAG"))
-                Toast.makeText(FeedScreen.this, "Problema na URL do video selecionado",
+            if(extras.getBoolean(CodeConstants.INTENT_NO_URL_DATA))
+                Toast.makeText(FeedScreen.this, R.string.error_youtube_feed,
                         Toast.LENGTH_SHORT).show();
         }
     }
