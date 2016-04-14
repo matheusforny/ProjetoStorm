@@ -54,7 +54,8 @@ public class VideoListHelper {
             List<VideoData> items = new ArrayList<VideoData>();
             for(SearchResult result:results){
                 VideoData item = new VideoData(result.getId().getVideoId(),
-                        result.getSnippet().getTitle(), result.getSnippet().getDescription());
+                        result.getSnippet().getTitle(), result.getSnippet().getDescription(),
+                        result.getSnippet().getThumbnails().getDefault().getUrl());
                 items.add(item);
             }
             return items;

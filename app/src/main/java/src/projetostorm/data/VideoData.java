@@ -8,11 +8,13 @@ public class VideoData {
     private String videoID;
     private String videoName;
     private String videoDescription;
+    private String videoThumbnailURL;
 
-    public VideoData(String videoID, String name, String description) {
+    public VideoData(String videoID, String name, String description, String videoThumbnailURL) {
         this.videoID = videoID;
         this.videoName = name;
         this.videoDescription = description;
+        this.videoThumbnailURL = videoThumbnailURL;
     }
 
     public String getVideoID(){
@@ -26,4 +28,6 @@ public class VideoData {
     public String getVideoDescription(){
         return this.videoDescription;
     }
+
+    public String getVideoThumbnailURL() { return this.videoThumbnailURL; }
 }

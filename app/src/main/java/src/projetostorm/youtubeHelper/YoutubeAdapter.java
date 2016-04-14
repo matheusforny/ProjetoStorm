@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,17 +48,26 @@ public class YoutubeAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.video_feed_item, null);
             holder = new ViewHolder();
-            holder.itemTitle = (TextView) convertView.findViewById(R.id.video_item);
+
+            holder.itemTitle = (TextView) convertView.findViewById(R.id.video_title);
+            holder.itemThumbnail = (ImageView)convertView.findViewById(R.id.video_thumbnail);
+            holder.itemDescription = (TextView)convertView.findViewById(R.id.video_description);
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.itemTitle.setText(items.get(position).getVideoName());
+        holder.itemDescription.setText(items.get(position).getVideoDescription());
+        Picasso.with(context).load(items.get(position).getVideoThumbnailURL())
+                .into(holder.itemThumbnail);
         return convertView;
     }
 
     static class ViewHolder {
         TextView itemTitle;
+        ImageView itemThumbnail;
+        TextView itemDescription;
     }
 
 }
