@@ -49,7 +49,7 @@ public class YoutubeAdapter extends BaseAdapter {
             convertView = View.inflate(context, R.layout.video_feed_item, null);
             holder = new ViewHolder();
 
-            holder.itemTitle = (TextView) convertView.findViewById(R.id.video_title);
+            holder.itemTitle = (TextView)convertView.findViewById(R.id.video_title);
             holder.itemThumbnail = (ImageView)convertView.findViewById(R.id.video_thumbnail);
             holder.itemDescription = (TextView)convertView.findViewById(R.id.video_description);
 

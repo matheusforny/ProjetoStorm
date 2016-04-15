@@ -1,10 +1,13 @@
-package src.projetostorm.listHelper;
+package src.projetostorm.rssHelper;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,17 +48,26 @@ public class RssAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.article_feed_item, null);
             holder = new ViewHolder();
-            holder.itemTitle = (TextView) convertView.findViewById(R.id.article_item);
+
+            holder.itemTitle = (TextView)convertView.findViewById(R.id.article_title);
+            holder.itemThumbnail = (ImageView)convertView.findViewById(R.id.article_thumbnail);
+            holder.itemDescription = (TextView)convertView.findViewById(R.id.article_description);
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.itemTitle.setText(items.get(position).getTitle());
+        holder.itemDescription.setText(items.get(position).getDescription());
+        Picasso.with(context).load(items.get(position).getThumbnailURL())
+                .into(holder.itemThumbnail);
         return convertView;
     }
 
     static class ViewHolder {
         TextView itemTitle;
+        ImageView itemThumbnail;
+        TextView itemDescription;
     }
 
 }

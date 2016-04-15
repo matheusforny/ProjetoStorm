@@ -1,28 +1,22 @@
 package src.projetostorm.fragments;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ListFragment;
-import android.support.v4.os.ResultReceiver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.List;
 
 import src.projetostorm.R;
 import src.projetostorm.VideoScreen;
 import src.projetostorm.data.CodeConstants;
-import src.projetostorm.data.RssItem;
 import src.projetostorm.data.VideoData;
-import src.projetostorm.listHelper.RssAdapter;
 import src.projetostorm.listHelper.VideoListHelper;
 import src.projetostorm.youtubeHelper.YoutubeAdapter;
 

@@ -18,7 +18,7 @@ import java.util.List;
 import src.projetostorm.R;
 import src.projetostorm.data.CodeConstants;
 import src.projetostorm.data.RssItem;
-import src.projetostorm.listHelper.RssAdapter;
+import src.projetostorm.rssHelper.RssAdapter;
 import src.projetostorm.rssHelper.RssService;
 
 /**
